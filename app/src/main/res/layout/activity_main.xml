@@ -20,6 +20,8 @@
         android:backgroundTint="#bde0fe"
 
         android:fadeScrollbars="false"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
         tools:context=".MainActivity">
 
         <Button
@@ -36,6 +38,8 @@
             app:iconGravity="textTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:strokeColor="#000000"
+            app:strokeWidth="10px"
             tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck" />
 
 
@@ -54,13 +58,15 @@
             app:iconGravity="textTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button4"
+            app:strokeColor="#000000"
+            app:strokeWidth="10px"
             tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="117dp"
             android:layout_height="117dp"
-            android:layout_marginTop="136dp"
+            android:layout_marginTop="132dp"
             android:backgroundTint="#ffafcc"
             android:text="@string/hear"
             android:textColor="#000000"
@@ -69,7 +75,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck" />
+            app:strokeColor="#000000"
+            app:strokeWidth="10px"
+            tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck"
+            tools:strokeColor="#000000" />
 
         <Button
             android:id="@+id/button"
@@ -84,7 +93,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:strokeColor="#000000"
+            app:strokeWidth="10px"
             tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="140dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="192dp"
+            android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toTopOf="@+id/button4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.409"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button2"
+            app:srcCompat="@drawable/step" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
