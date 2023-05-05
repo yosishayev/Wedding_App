@@ -62,7 +62,7 @@
             android:layout_height="117dp"
             android:layout_marginTop="136dp"
             android:backgroundTint="#ffafcc"
-            android:text="כגדש"
+            android:text="@string/hear"
             android:textColor="#000000"
             app:icon="@android:drawable/stat_sys_headset"
             app:iconGravity="textTop"
