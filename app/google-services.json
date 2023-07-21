@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "359932852814",
+    "project_id": "wedding-app-v3",
+    "storage_bucket": "wedding-app-v3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359932852814:android:8beeb81b464043cf0a211f",
+        "android_client_info": {
+          "package_name": "com.yosishay.wedding_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359932852814-4c85u005dm3sutu6bems20uj977lfrs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNb8HyN5ySNuHpiy_V1rKGieFm7KQs5ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359932852814-4c85u005dm3sutu6bems20uj977lfrs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

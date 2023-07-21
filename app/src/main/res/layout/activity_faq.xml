@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/reflection_back"
+        android:backgroundTint="#AEFFFFFF"
+        android:backgroundTintMode="src_over"
+        android:fillViewport="true"
+        android:hapticFeedbackEnabled="false"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/question1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="מה הדבר הראשון שכדאי לי לעשות?"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/answer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="אין ספק שהדבר הראשון להתחיל ממנו הוא רשימת המוזמנים. האצילו סמכויות, תנו להורים של כל צד להכין רשימה ולהעביר לכם וגם אתם, הכינו כל אחד רשימה נפרדת. עברו על אנשי הקשר בזכרון, על תקופות בחייכם כמו צבא, לימודים ואם יש לכם סבלנות אפילו על חברי פייסבוק. לאט לאט תתחיל להתגבש רשימה כללית, ממנה תצמצמו."
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/question2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="אוקיי, יש רשימת מוזמנים לחתונה. מה הלאה?"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/answer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="אחרי הרשימה, הדבר החשוב ביותר הוא לסגור תאריך, משמע- לסגור מקום. אחריו, תתחילו ממש כמו פאזל לקבוע עם שלל הספקים ולהפוך חלום למציאות."
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/question3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="איך בוחרים גן או אולם אירועים?"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/answer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="החליטו על עקרונות שחשובים לכם כמו יום בשבוע או מיקום גיאוגרפי וכך תסננו רק את המקומות הרלוונטים. לאחר מכן, קבעו פגישה והגיעו להתרשם."
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/question4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="סגרנו אולם אירועים! איך מתקדמים?"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/answer4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="בשעה טובה, עכשיו ניתן למלא את האולם בכל טוב. די גיי, צלם סטילס, וידיאו, קייטרינג ובר, רב, שמלה, איפור, שיער, אטרקציות, הסעות, מגנטים, וכל מה שחלמתם עליו ככ הרבה זמן. רק שימו לב לתאם עם כולם לתאריך הנכון.."
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/question5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="איך בוחרים כמו שצריך את האוכל או את הקייטרינג לחתונה?"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/answer5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="מדובר כאן על משהו מאוד אינדיווידואלי. יש אנשים שחשוב להם האוכל ולכן, כנראה יבחרו באולם עם קייטרינג מוכר ויש כאלה שכבר השלימו עם העובדה שאוכל בחתונה לעולם לא יהיה כמו במסעדה ושיחררו. שימו לב לטעום את המנות מראש, לשאול כל שאלה שעולה לכם לראש ולוודא כיצד בדיוק הדברים הולכים להראות ביום האירוע, על מנת שתוכלו להיות רגועים שהאורחים שלכם יהיו שבעים ממגוון מנות רחב שיתאים למכנה המשותף הרחב ביותר."
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

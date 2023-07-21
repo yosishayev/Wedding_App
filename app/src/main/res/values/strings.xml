@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Wedding_App</string>
+    <string name="button">Button</string>
+    <string name="where">Where ?</string>
+    <string name="music">Music</string>
+    <string name="sel">מה עם סלפי ?</string>
+    <string name="hear">מה שומעים ?</string>
+    <string name="whe">איפה ?</string>
+    <string name="foru">התייעצות קלה?</string>
+    <string name="textview">TextView</string>
+    <string name="emails">אימייל</string>
+    <string name="msg">הודעה</string>
+    <string name="name">שם</string>
+    <string name="password">סיסמה</string>
+    <string name="phone">מספר טלפון</string>
+    <string name="prof">מקצוע</string>
+    <string name="url">כתובת תמונה</string>
+</resources>

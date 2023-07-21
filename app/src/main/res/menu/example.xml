@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/login"
+        android:title="התחבר"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/home"
+        android:title="דף ראשי"
+        app:showAsAction="never">
+    </item>
+    <item
+        android:id="@+id/djs"
+        android:title="דיג'יים"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/where"
+        android:title="אולמות/גנים"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/photographer"
+        android:title="צלמים"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/faq"
+        android:title="שאלות נפוצות"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/contant"
+        android:title="יצירת קשר"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/register"
+        android:title="הרשמה"
+        app:showAsAction="never">
+    </item>
+    <item
+        android:id="@+id/logout"
+        android:title="התנתק"
+        app:showAsAction="never">
+    </item>
+
+</menu>
