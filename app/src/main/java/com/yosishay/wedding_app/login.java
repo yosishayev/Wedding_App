@@ -186,6 +186,17 @@ public class login extends AppCompatActivity {
                 Intent home = new Intent(login.this, MainActivity.class);
                 startActivity(home);
                 return true;
+            case R.id.preferences:
+                //check if user is connected
+                String name_user = sharedPreferences.getString("userName", "");
+                if(!name_user.equals("")){
+                    // Start preference activity
+                    Intent preference = new Intent(login.this, Preferences.class);
+                    startActivity(preference);
+                }
+                else{
+                    Toast.makeText(this, "עלייך להתחבר על מנת לשמור העדפות", Toast.LENGTH_SHORT).show();
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
