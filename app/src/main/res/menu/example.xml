@@ -44,5 +44,10 @@
         android:title="התנתק"
         app:showAsAction="never">
     </item>
+    <item
+        android:id="@+id/preferences"
+        android:title="העדפות שלי"
+        app:showAsAction="never">
+    </item>
 
 </menu>
