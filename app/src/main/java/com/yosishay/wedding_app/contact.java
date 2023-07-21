@@ -124,8 +124,6 @@ Toolbar toolbar;
                 return true;
             case R.id.faq:
                 // Start faq activity
-                Intent faq = new Intent(contact.this, faq.class);
-                startActivity(faq);
                 return true;
             case R.id.home:
                 // Start home activity
@@ -176,6 +174,8 @@ Toolbar toolbar;
                         editor.putString("phone", "");
                         editor.apply();
                         toolbar.setTitle("");
+                        Intent faq = new Intent(contact.this, faq.class);
+                        startActivity(faq);
                         Toast.makeText(contact.this,"התנתקת בהצלחה",Toast.LENGTH_LONG).show();
                     })
                     .setNegativeButton("לא", null) // User canceled logout, do nothing
