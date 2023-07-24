@@ -16,14 +16,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+
+import java.util.ArrayList;
 
 
 public class faq extends AppCompatActivity {
 
     Toolbar toolbar;
+    int numberofquestions;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +48,100 @@ public class faq extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String name_user = sharedPreferences.getString("userName", "");
         toolbar.setTitle("hello "+name_user);
+
+        CardView card1 = findViewById(R.id.card1);
+        CardView card2 = findViewById(R.id.card2);
+        CardView card3 = findViewById(R.id.card3);
+        CardView card4 = findViewById(R.id.card4);
+        CardView card5 = findViewById(R.id.card5);
+
+        card1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toogleText((CardView) v);
+            }
+        });
+
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toogleText((CardView) v);
+            }
+        });
+
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toogleText((CardView) v);
+            }
+        });
+
+        card4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toogleText((CardView) v);
+            }
+        });
+
+        card5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toogleText((CardView) v);
+            }
+        });
+
+
+
+
+
+
+    }
+
+    private void toogleText(CardView card){
+        TextView detailsTextView = null;
+        ImageView image1 = null;
+        ImageView image2 = null;
+        switch (card.getId()) {
+            case R.id.card1:
+                detailsTextView = findViewById(R.id.answer1);
+                image1 = findViewById(R.id.arrowquestion1);
+                image2= findViewById(R.id.arrowupquestion1);
+                break;
+            case R.id.card2:
+                detailsTextView = findViewById(R.id.answer2);
+                image1 = findViewById(R.id.arrowquestion2);
+                image2= findViewById(R.id.arrowupquestion2);
+                break;
+            case R.id.card3:
+                detailsTextView = findViewById(R.id.answer3);
+                image1 = findViewById(R.id.arrowquestion3);
+                image2= findViewById(R.id.arrowupquestion3);
+                break;
+            case R.id.card4:
+                detailsTextView = findViewById(R.id.answer4);
+                image1 = findViewById(R.id.arrowquestion4);
+                image2= findViewById(R.id.arrowupquestion4);
+                break;
+            case R.id.card5:
+                detailsTextView = findViewById(R.id.answer5);
+                image1 = findViewById(R.id.arrowquestion5);
+                image2= findViewById(R.id.arrowupquestion5);
+                break;
+        }
+        if(detailsTextView!=null){
+            int visibilitytext = detailsTextView.getVisibility();
+            detailsTextView.setVisibility(visibilitytext == View.VISIBLE ? View.GONE : View.VISIBLE);
+        }
+        if(image1!=null){
+            int visibility = image1.getVisibility();
+            image1.setVisibility(visibility == View.VISIBLE ? View.GONE : View.VISIBLE);
+        }
+        if(image2!=null){
+            int visibility = image1.getVisibility();
+            image2.setVisibility(visibility == View.VISIBLE ? View.GONE : View.VISIBLE);
+        }
+
+
     }
 
     @Override
@@ -101,6 +203,17 @@ public class faq extends AppCompatActivity {
                 Intent home = new Intent(faq.this, MainActivity.class);
                 startActivity(home);
                 return true;
+            case R.id.preferences:
+                //check if user is connected
+                String name_user = sharedPreferences.getString("userName", "");
+                if(!name_user.equals("")){
+                    // Start preference activity
+                    Intent preference = new Intent(faq.this, Preferences.class);
+                    startActivity(preference);
+                }
+                else{
+                    Toast.makeText(this, "עלייך להתחבר על מנת לשמור העדפות", Toast.LENGTH_SHORT).show();
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -155,4 +268,6 @@ public class faq extends AppCompatActivity {
             Toast.makeText(faq.this,"אינך מחובר",Toast.LENGTH_LONG).show();
         }
     }
+
+
 }

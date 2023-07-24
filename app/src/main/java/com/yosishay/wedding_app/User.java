@@ -9,18 +9,18 @@ public class User {
 
     private String isAdmin;
 
-    private ArrayList<String> suppliers;
+    private ArrayList<String>  suppliers;
 
     public User() {
         // Default constructor required for Firebase database operations
     }
-    //constructor
+
     public User(String name, String phone, String password) {
         this.name = name;
         this.phone = phone;
         this.password = password;
         isAdmin="0";
-        suppliers = new ArrayList<String>();
+        suppliers=  new ArrayList<String>();
         suppliers.add("");
     }
 
@@ -37,13 +37,15 @@ public class User {
     }
 
     public String getIsAdmin(){return isAdmin;}
+
+    public ArrayList<String> getSuppliers() {
+        return suppliers;
+    }
+
     public void setSuppliers(ArrayList<String> suppliers) {
         this.suppliers = suppliers;
     }
-
     public void addSuppliers(String supplier) {
         this.suppliers.add(supplier);
     }
-    public ArrayList<String> getSuppliers() {return suppliers;}
-
 }
