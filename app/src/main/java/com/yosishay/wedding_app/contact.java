@@ -130,6 +130,18 @@ Toolbar toolbar;
                 Intent home = new Intent(contact.this, MainActivity.class);
                 startActivity(home);
                 return true;
+            case R.id.preferences:
+                //check if user is connected
+                String name_user = sharedPreferences.getString("userName", "");
+                if(!name_user.equals("")){
+                // Start preference activity
+                    Intent preference = new Intent(contact.this, Preferences.class);
+                    startActivity(preference);
+                }
+                else{
+                    Toast.makeText(this, "עלייך להתחבר על מנת לשמור העדפות", Toast.LENGTH_SHORT).show();
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
