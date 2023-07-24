@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -71,9 +73,6 @@ public class Preferences extends AppCompatActivity {
         //add the suppliers to preference page
         addSuppliers();
 
-
-
-
     }
 
     private void addSuppliers() {
@@ -95,20 +94,78 @@ public class Preferences extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot supplierSnapshot : dataSnapshot.getChildren()) {
                     Supplier supplier = supplierSnapshot.getValue(Supplier.class);
-                    for (String supplierInList : suppliers){
-                        if (supplierSnapshot.getKey().equals(supplierInList)){
+                    for (String supplierInList : suppliers) {
+                        if (supplierSnapshot.getKey().equals(supplierInList)) {
                             namesList.add(supplier.getName());
                             urlsList.add(supplier.getUrl());
                             phoneList.add(supplier.getPhone());
                             profList.add(supplier.getProf());
                             ratingList.add(supplier.getAvg());
+                            childList.add(supplierSnapshot.getKey());
                             supList.add(supplier);
                         }
                     }
                 }
 
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                String userPhone = sharedPreferences.getString("phone", "");
                 // Create and set the adapter with the retrieved data
-                CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), namesList.toArray(new String[0]),ratingList.toArray(new String[0]), urlsList.toArray(new String[0]));
+                CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), namesList.toArray(new String[0]), ratingList.toArray(new String[0]), urlsList.toArray(new String[0]), childList.toArray(new String[0]));
+                customBaseAdapter.setOnButtonClickListener(new CustomBaseAdapter.OnButtonClickListener() {
+                    @Override
+                    public void onButtonClick(String key) {
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        // Retrieve users information from the database
+                        DatabaseReference preference = database.getReference("Users");
+
+                        //check if there are changes in the database
+                        preference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (userPhone.equals("")) {
+                                    Toast.makeText(Preferences.this, "עליך להתחבר להוסיף ספק להעדפות שלי.", Toast.LENGTH_LONG).show();
+                                } else {
+                                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                        String phoneUser = userSnapshot.child("phone").getValue(String.class);
+                                        if (phoneUser.equals(userPhone)) {
+                                            DatabaseReference userRef = userSnapshot.getRef();
+                                            User user = userSnapshot.getValue(User.class);
+
+                                            //array of the suppliers that user liked
+                                            ArrayList<String> temp = user.getSuppliers();
+
+                                            //check if the supplier is in hte list. if is in the list remove it.
+                                            for (int i = 0; i < temp.size(); i++) {
+                                                if (temp.get(i).equals(key)) {
+                                                    Toast.makeText(Preferences.this, "נמחק", Toast.LENGTH_SHORT).show();
+                                                    temp.remove(i);
+                                                    userRef.setValue(user);
+                                                    recreate();
+                                                    return;
+                                                }
+
+                                            }
+
+
+                                            break; // No need to continue the loop once the user is found and updated.
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(Preferences.this, "Database error occurred.", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        });
+
+
+                    }
+
+                });
                 listView.setAdapter(customBaseAdapter);
             }
 
@@ -117,9 +174,6 @@ public class Preferences extends AppCompatActivity {
                 Toast.makeText(Preferences.this, "Database error occurred.", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
 
     private void retrievePreferencesInformation(String userPhone) {
