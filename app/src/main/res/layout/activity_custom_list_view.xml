@@ -36,4 +36,13 @@
         android:textColor="@color/black"
         android:textSize="16dp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/button8"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_weight="0"
+        android:background="@drawable/button_heart"
+        android:layout_marginLeft="10dp"
+        />
 </LinearLayout>

@@ -14,9 +14,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -114,7 +117,74 @@ public class self extends AppCompatActivity {
                 }
 
                 // Create and set the adapter with the retrieved data
-                CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), namesList.toArray(new String[0]),ratingList.toArray(new String[0]), urlsList.toArray(new String[0]));
+                CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), namesList.toArray(new String[0]),ratingList.toArray(new String[0]), urlsList.toArray(new String[0]),childList.toArray(new String[0]));
+                customBaseAdapter.setOnButtonClickListener(new CustomBaseAdapter.OnButtonClickListener() {
+                    @Override
+                    public void onButtonClick(String key) {
+                        String userPhone = sharedPreferences.getString("phone", "");
+
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        // Retrieve users information from the database
+                        DatabaseReference preference = database.getReference("Users");
+
+                        //check if there are changes in the database
+                        preference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(userPhone.equals("")){
+                                    Toast.makeText(self.this,"עליך להתחבר להוסיף ספק להעדפות שלי.",Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    String phoneUser = userSnapshot.child("phone").getValue(String.class);
+                                    if (phoneUser.equals(userPhone)) {
+                                        DatabaseReference userRef = userSnapshot.getRef();
+                                        User user = userSnapshot.getValue(User.class);
+
+                                        //array of the suppliers that user liked
+                                        ArrayList<String> temp= user.getSuppliers();
+
+                                        //check if the supplier is in hte list. if is in the list remove it.
+                                        for(int i=0;i<temp.size();i++) {
+                                            if(temp.get(i).equals(key)){
+                                                Toast.makeText(self.this, "נמחק", Toast.LENGTH_SHORT).show();
+                                                temp.remove(i);
+                                                userRef.setValue(user);
+                                                return;
+                                            }
+
+                                        }
+                                        temp.add(key);
+
+                                        // Update the user data in the database
+
+                                        userRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(self.this, "נוסף למועדפים", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(self.this, "Failed to update user data", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                        break; // No need to continue the loop once the user is found and updated.
+                                    }
+                                }
+                            }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(self.this, "Database error occurred.", Toast.LENGTH_SHORT).show();
+                   }
+
+
+                });
+
+                    }
+                });
                 listView.setAdapter(customBaseAdapter);
             }
 
@@ -139,7 +209,6 @@ public class self extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
@@ -180,8 +249,6 @@ public class self extends AppCompatActivity {
             case R.id.logout:
                 //on logout reset username/isAdmin/phoneTitle
                 showLogoutDialog();
-                Intent main = new Intent(self.this, MainActivity.class);
-                startActivity(main);
                 return true;
             case R.id.where:
                 //set the next page we going to move in is place(locations) for self activity to display it
@@ -244,6 +311,8 @@ public class self extends AppCompatActivity {
                         editor.putString("phone", "");
                         editor.apply();
                         toolbar.setTitle("");
+                        Intent main = new Intent(self.this, MainActivity.class);
+                        startActivity(main);
                         Toast.makeText(self.this,"התנתקת בהצלחה",Toast.LENGTH_LONG).show();
                     })
                     .setNegativeButton("לא", null) // User canceled logout, do nothing

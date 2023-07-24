@@ -167,8 +167,6 @@ public class Register extends AppCompatActivity {
             case R.id.logout:
                 //on logout reset username/isAdmin/phoneTitle
                 showLogoutDialog();
-                Intent main = new Intent(Register.this, MainActivity.class);
-                startActivity(main);
                 return true;
             case R.id.where:
                 //set the next page we going to move in is place(locations) for self activity to display it
@@ -231,6 +229,8 @@ public class Register extends AppCompatActivity {
                         editor.putString("phone", "");
                         editor.apply();
                         toolbar.setTitle("");
+                        Intent main = new Intent(Register.this, MainActivity.class);
+                        startActivity(main);
                         Toast.makeText(Register.this,"התנתקת בהצלחה",Toast.LENGTH_LONG).show();
                     })
                     .setNegativeButton("לא", null) // User canceled logout, do nothing
